@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background: #06090a;
+  color: #f3f6f4;
+}
+
+::selection {
+  background: #33a484;
+  color: #06090a;
+}
+
+:focus-visible {
+  outline: 2px solid #4fcba6;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* thin scrollbar for horizontally-scrolling filter row / galleries */
+.thin-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #1e2b26 transparent;
+}
+.thin-scroll::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: #1e2b26;
+  border-radius: 999px;
+}
+
+@layer components {
+  /* the "floating panel" treatment used across the hero cards and project detail pages */
+  .panel {
+    @apply relative overflow-hidden rounded-xl2 border border-ink-line bg-ink-panel;
+  }
+  .panel-glow::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(120% 60% at 15% 0%, rgba(51, 164, 132, 0.35), transparent 60%);
+    pointer-events: none;
+  }
+  .tag-pill {
+    @apply inline-flex items-center rounded-full border border-ink-line bg-ink-raised px-3 py-1 font-mono text-[11px] tracking-wide text-mist;
+  }
+  .eyebrow-pill {
+    @apply inline-flex items-center rounded-full border border-ink-line bg-ink-raised px-4 py-1.5 text-xs font-semibold tracking-wide text-ivory;
+  }
+}
